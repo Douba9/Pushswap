@@ -2,20 +2,28 @@
 
 
 
-$la = [12, 23, 34, 23];
-$lb = [34, 55, 66, 90];
+$la = $argv;
+$lb = [];
 
-/*foreach($argv as $key => $value){
-    if($value != "push_swap.php"){
-        if(isset($argv[$key]) && isset($argv[$key+1])){
-            if($argv[$key] < $argv[$key+1]){
-                echo $argv[$key]." plus petit que ".$argv[$key+1]."\n";
-            }else{
-                echo $argv[$key]." plus grand que ".$argv[$key+1]."\n";
+$isChanged = true;
+
+while($isChanged == true){
+    $tempLb = $lb;
+    foreach($la as $key => $value){
+        if($value != "push_swap.php"){
+            if(isset($la[$key]) && isset($la[$key+1])){
+                if($la[$key] < $la[$key+1]){
+                    echo $la[$key]." plus petit que ".$la[$key+1]."\n";
+                }else{
+                    echo $la[$key]." plus grand que ".$la[$key+1]."\n";
+                }
             }
         }
     }
-}*/
+    if($lb == $tempLb){
+        $isChanged = false;
+    }
+}
 
 function sa($la){
     if(sizeof($la) > 1){
@@ -68,7 +76,7 @@ function pa($la, $lb){
         print_r($la);
         echo " lb: ";
         print_r($lb);
-        $la[0] = $lb[0];
+        array_unshift($la, $lb[0]);
         echo " la: ";
         print_r($la);
         echo " lb: ";
@@ -86,12 +94,87 @@ function pb($la, $lb){
         echo " lb: ";
         print_r($lb);
         $lb[0] = $la[0];
+        array_unshift($lb, $la[0]);
         echo " la: ";
         print_r($la);
         echo " lb: ";
         print_r($lb);
     }else{
         echo "pas assez d'éléments\n";
+    }
+}
+
+function ra($la){
+    if(sizeof($la) >= 2){
+        print_r($la);
+        $la[0] = $la[sizeof($la) - 1];
+        print_r($la);
+    }else{
+        echo "pas assez délément";
+    }
+}
+
+function rb($lb){
+    if(sizeof($lb) >= 2){
+        print_r($lb);
+        $lb[0] = $lb[sizeof($lb) - 1];
+        print_r($lb);
+    }else{
+        echo "pas assez délément";
+    }
+}
+
+function rr($la, $lb){
+    if(sizeof($la) >= 2 && sizeof($lb) >= 2){
+        echo "la: ";
+        print_r($la);
+        echo " lb: ";
+        print_r($lb);
+        $la[0] = $la[sizeof($la) - 1];
+        $lb[0] = $lb[sizeof($lb) - 1];
+        echo "la: ";
+        print_r($la);
+        echo " lb: ";
+        print_r($lb);
+    }else{
+        echo "pas assez délément";
+    }
+}
+
+function rra($la){
+    if(sizeof($la) >= 2){
+        print_r($la);
+        $la[sizeof($la) - 1] = $la[0];
+        print_r($la);
+    }else{
+        echo "pas assez délément";
+    }
+}
+
+function rrb($lb){
+    if(sizeof($lb) >= 2){
+        print_r($lb);
+        $lb[sizeof($lb) - 1] = $lb[0];
+        print_r($lb);
+    }else{
+        echo "pas assez délément";
+    }
+}
+
+function rrr($la, $lb){
+    if(sizeof($la) >= 2 && sizeof($lb) >= 2){
+        echo "la: ";
+        print_r($la);
+        echo " lb: ";
+        print_r($lb);
+        $la[sizeof($la) - 1] = $la[0];
+        $lb[sizeof($lb) - 1] = $lb[0];
+        echo "la: ";
+        print_r($la);
+        echo " lb: ";
+        print_r($lb);
+    }else{
+        echo "pas assez délément";
     }
 }
 
