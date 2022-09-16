@@ -17,40 +17,52 @@ class PushSwap {
         $la = $this->la;
         $lb = $this->lb;
 
-        $isChanged = true;
+        $isSorted = true;
 
-        while($isChanged == true){
-
-            $tempLa = $la;
-            
-            if(sizeof($la) == 1){
-                $this->pb();
-                $isChanged = false;
-            }else{
-                $min = min($la);
-            }
-
-            if($la[0] == $min){
-                $this->pb();
-            }
-            else{
-                $this->rra();
-            }
-
-            echo " ";
-
-            $la = $this->la;
-            $lb = $this->lb;
-
-            if($la == $tempLa){
-                $isChanged = false;
+        foreach($la as $key => $value){
+            if(isset($la[$key+1])){
+                if($la[$key] > $la[$key+1]){
+                    $isSorted = false;
+                }
             }
         }
 
-        for($i = 0; $i != sizeof($lb); $i++){
-            $this->pa();
-            if($i != sizeof($lb) - 1){
+        if($isSorted == false){
+            $isChanged = true;
+
+            while($isChanged == true){
+
+                $tempLa = $la;
+                
+                if(sizeof($la) == 1){
+                    $this->pb();
+                    $isChanged = false;
+                }else{
+                    $min = min($la);
+                }
+
+                if($la[0] == $min){
+                    $this->pb();
+                }
+                else{
+                    $this->rra();
+                }
+
                 echo " ";
+
+                $la = $this->la;
+                $lb = $this->lb;
+
+                if($la == $tempLa){
+                    $isChanged = false;
+                }
+            }
+
+            for($i = 0; $i != sizeof($lb); $i++){
+                $this->pa();
+                if($i != sizeof($lb) - 1){
+                    echo " ";
+                }
             }
         }
         echo"\n";
